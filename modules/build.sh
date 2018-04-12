@@ -7,6 +7,7 @@ import com.encodeering.ci.docker
 
 docker-pull "$REPOSITORY/alpine-$ARCH:3.7" "alpine:3.7"
 
-docker-build alpine
+docker-build --build-arg TOMB=v$VERSION alpine
 
+docker-verify-config "--entrypoint tomb"
 docker-verify
