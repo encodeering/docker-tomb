@@ -2,6 +2,11 @@ FROM       alpine:3.7
 
 ARG        TOMB
 
+COPY       etc /etc
+
+RUN        addgroup -g 1000 -S       sentry        \
+ &&        adduser  -u 1000 -D -S -G sentry sentry
+
 WORKDIR    /usr/local/src
 
 RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories                \
@@ -18,6 +23,8 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
 
 VOLUME     /mnt/tomb
 WORKDIR    /mnt/tomb
+
+USER       sentry
 
 RUN        touch ~/.zshrc
 
