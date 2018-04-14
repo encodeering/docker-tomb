@@ -24,7 +24,8 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
 VOLUME     /mnt/tomb
 WORKDIR    /mnt/tomb
 
-USER       sentry
+# deactivates user switch due initial opening warning
+# USER       sentry
 
 RUN        touch ~/.zshrc
 
