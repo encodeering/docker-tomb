@@ -3,10 +3,12 @@ FROM       alpine:3.7
 ARG        TOMB
 
 COPY       etc /etc
+COPY       bin /usr/local/bin
 
 RUN        addgroup -g 1000 -S       sentry        \
- &&        adduser  -u 1000 -D -S -G sentry sentry \                                                                        \
- &&        mkdir -p /mnt/tomb
+ &&        adduser  -u 1000 -D -S -G sentry sentry \
+ &&        mkdir -p /mnt/tomb                      \
+ &&        chmod +x /usr/local/bin/*.sh
 
 WORKDIR    /usr/local/src
 
@@ -29,4 +31,4 @@ WORKDIR    /mnt/tomb
 
 RUN        touch ~/.zshrc
 
-ENTRYPOINT ["zsh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
