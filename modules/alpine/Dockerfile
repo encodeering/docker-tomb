@@ -7,6 +7,7 @@ COPY       bin /usr/local/bin
 
 RUN        addgroup -g 1000 -S       sentry        \
  &&        adduser  -u 1000 -D -S -G sentry sentry \
+ &&        rm -rf   /media/*                       \
  &&        mkdir -p /mnt/tomb                      \
  &&        chmod +x /usr/local/bin/*.sh
 
