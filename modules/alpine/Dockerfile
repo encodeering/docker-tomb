@@ -1,6 +1,7 @@
 FROM       alpine:3.7
 
 ARG        TOMB
+ARG        KEY=73B35DA54ACB7D10
 
 COPY       etc /etc
 COPY       bin /usr/local/bin
@@ -14,14 +15,19 @@ RUN        addgroup -g 1000 -S       sentry        \
 WORKDIR    /usr/local/src
 
 RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories                \
- &&        apk --no-cache --virtual build-dependencies add make curl                                           \
+ &&        apk --no-cache --virtual build-dependencies add make curl gnupg                                     \
  &&        apk --no-cache add cryptsetup e2fsprogs gnupg pinentry sudo zsh                                     \
                               e2fsprogs-extra file findmnt gettext util-linux                                  \
                               haveged lsof libqrencode steghide@testing                                        \
  &&        mkdir tomb                                                                                          \
- &&        curl -SL https://github.com/dyne/Tomb/archive/${TOMB}.tar.gz | tar xvz -C tomb --strip-components=1 \
+ &&        curl -SL https://files.dyne.org/tomb/Tomb-${TOMB}.tar.gz     > tomb.tgz                             \
+ &&        curl -SL https://files.dyne.org/tomb/Tomb-${TOMB}.tar.gz.asc > tomb.asc                             \
+ &&        export GNUPGHOME="`pwd`"                                                                            \
+ &&        gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "${KEY}"                                   \
+ &&        gpg --batch --verify tomb.asc tomb.tgz                                                              \
+ &&        tar xvzf tomb.tgz -C tomb --strip-components=1                                                      \
  &&        make -C tomb install                                                                                \
- &&        rm -rf  tomb                                                                                        \
+ &&        rm -rf  tomb *                                                                                      \
  &&        apk del build-dependencies
 
 VOLUME     /mnt/tomb
