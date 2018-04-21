@@ -16,12 +16,12 @@
 
 ```bash
 # armhf
-tomb () { docker run --rm -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.5-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.5-alpine "$@"; }
 ```
 
 ```bash
 # amd64
-tomb () { docker run --rm -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.5-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.5-alpine "$@"; }
 ```
 
 ### Notice
