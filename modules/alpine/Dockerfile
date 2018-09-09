@@ -28,7 +28,7 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
  &&        tar xvzf tomb.tgz -C tomb --strip-components=1                                                      \
  &&        make -C tomb install                                                                                \
  &&        rm -rf  tomb *                                                                                      \
- &&        apk del build-dependencies
+ &&        apk del --force-broken-world build-dependencies
 
 VOLUME     /mnt/tomb
 WORKDIR    /mnt/tomb
