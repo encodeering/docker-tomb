@@ -17,7 +17,7 @@ env:
     - BASE=alpine ARCH=armhf VERSION=2.5
 
 install:
-- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.10
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.11
 
 before_script:
 - sudo -E bash ./module.sh "." "./setup.sh"
