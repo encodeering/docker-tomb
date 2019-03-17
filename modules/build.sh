@@ -10,4 +10,4 @@ docker-pull "$REPOSITORY/alpine-$ARCH:3.7" "alpine:3.7"
 docker-build --build-arg TOMB=$VERSION alpine
 
 docker-verify-config "--entrypoint tomb"
-docker-verify
+docker-verify -v 2>&1 | dup | contains "Tomb ${VERSION}"
