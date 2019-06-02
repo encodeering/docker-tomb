@@ -20,8 +20,8 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
                               e2fsprogs-extra file findmnt gettext util-linux                                  \
                               haveged lsof libqrencode steghide@testing                                        \
  &&        mkdir tomb                                                                                          \
- &&        curl -SL https://files.dyne.org/tomb/Tomb-${TOMB}.tar.gz     > tomb.tgz                             \
- &&        curl -SL https://files.dyne.org/tomb/Tomb-${TOMB}.tar.gz.asc > tomb.asc                             \
+ &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz     > tomb.tgz                    \
+ &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz.asc > tomb.asc                    \
  &&        export GNUPGHOME="`pwd`"                                                                            \
  &&        gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "${KEY}"                                   \
  &&        gpg --batch --verify tomb.asc tomb.tgz                                                              \

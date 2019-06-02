@@ -6,22 +6,22 @@
 
 - https://hub.docker.com/r/encodeering/tomb-armhf/
 
-    ```docker pull encodeering/tomb-armhf:2.5-alpine```
+    ```docker pull encodeering/tomb-armhf:2.6-alpine```
 
 - https://hub.docker.com/r/encodeering/tomb-amd64/
 
-    ```docker pull encodeering/tomb-amd64:2.5-alpine```
+    ```docker pull encodeering/tomb-amd64:2.6-alpine```
 
 ### Utility
 
 ```bash
 # armhf
-tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.5-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.6-alpine "$@"; }
 ```
 
 ```bash
 # amd64
-tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.5-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.6-alpine "$@"; }
 ```
 
 ### Notice

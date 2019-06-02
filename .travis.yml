@@ -13,8 +13,8 @@ env:
     - PROJECT="tomb"
     - REPOSITORY="encodeering"
   matrix:
-    - BASE=alpine ARCH=amd64 VERSION=2.5
-    - BASE=alpine ARCH=armhf VERSION=2.5
+    - BASE=alpine ARCH=amd64 VERSION=2.6
+    - BASE=alpine ARCH=armhf VERSION=2.6
 
 install:
 - bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.11
