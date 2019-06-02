@@ -1,4 +1,4 @@
-FROM       alpine:3.7
+FROM       alpine:3.9
 
 ARG        TOMB
 ARG        KEY=73B35DA54ACB7D10
