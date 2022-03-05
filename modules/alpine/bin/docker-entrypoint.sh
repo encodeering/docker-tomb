@@ -2,6 +2,6 @@
 
 [ $# -gt 0 ] && tomb open $@
 
-docker-exec zsh
+zsh
 
 tomb close all || tomb slam all
