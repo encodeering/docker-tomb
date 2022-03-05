@@ -24,7 +24,7 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
  &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz.asc > tomb.asc                    \
  &&        export GNUPGHOME="`pwd`"                                                                            \
  &&        chmod 600        "`pwd`"                                                                            \
- &&        gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "${KEY}"                                   \
+ &&        gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys "${KEY}"                                    \
  &&        gpg --batch --verify tomb.asc tomb.tgz                                                              \
  &&        tar xvzf tomb.tgz -C tomb --strip-components=1                                                      \
  &&        make -C tomb install                                                                                \
