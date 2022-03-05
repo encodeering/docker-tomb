@@ -14,11 +14,10 @@ RUN        addgroup -g 1000 -S       sentry        \
 
 WORKDIR    /usr/local/src/tomb
 
-RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories                \
- &&        apk --no-cache --virtual build-dependencies add make curl gnupg                                     \
+RUN        apk --no-cache --virtual build-dependencies add make curl gnupg                                     \
  &&        apk --no-cache add cryptsetup e2fsprogs gnupg pinentry sudo zsh                                     \
                               e2fsprogs-extra file findmnt gettext util-linux                                  \
-                              haveged lsof libqrencode steghide@testing                                        \
+                              haveged lsof libqrencode                                                         \
  &&        mkdir tomb                                                                                          \
  &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz     > tomb.tgz                    \
  &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz.asc > tomb.asc                    \
