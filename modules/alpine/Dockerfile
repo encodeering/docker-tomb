@@ -12,7 +12,7 @@ RUN        addgroup -g 1000 -S       sentry        \
  &&        mkdir -p /mnt/tomb                      \
  &&        chmod +x /usr/local/bin/*.sh
 
-WORKDIR    /usr/local/src
+WORKDIR    /usr/local/src/tomb
 
 RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories                \
  &&        apk --no-cache --virtual build-dependencies add make curl gnupg                                     \
@@ -23,6 +23,7 @@ RUN        echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/a
  &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz     > tomb.tgz                    \
  &&        curl -SL https://files.dyne.org/tomb/releases/Tomb-${TOMB}.tar.gz.asc > tomb.asc                    \
  &&        export GNUPGHOME="`pwd`"                                                                            \
+ &&        chmod 600        "`pwd`"                                                                            \
  &&        gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "${KEY}"                                   \
  &&        gpg --batch --verify tomb.asc tomb.tgz                                                              \
  &&        tar xvzf tomb.tgz -C tomb --strip-components=1                                                      \
