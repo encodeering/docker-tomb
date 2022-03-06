@@ -1,0 +1,51 @@
+jobs:
+- name: build
+  plan:
+  - in_parallel:
+    - get: code
+      params:
+        depth: 1
+    - get: dind
+  - across:
+    - var: platform
+      values: ((platforms))
+      max_in_flight: 2
+    do:
+    - task: build
+      privileged: true
+      image: dind
+      config:
+        platform: linux
+        params:
+          ARCH:     ((.:platform))
+          PIPELINE:   ((pipeline))
+          REPOSITORY: ((repository))
+          DOCKER_USERNAME: ((docker.username))
+          DOCKER_PASSWORD: ((docker.password))
+        inputs:
+        - name: code
+        run:
+          path: entrypoint.sh
+          args:
+          - bash
+          - -cx
+          - |
+            set -euo pipefail
+            cd code
+            export $(ci.sh env <<< "${PIPELINE}")
+                     ci.sh unpack docker
+            bash ./module.sh .       ./setup.sh
+            bash ./module.sh modules ./build.sh
+            bash ./module.sh .       ./release.sh
+
+resources:
+- name: code
+  type: git
+  source:
+    uri: ((git.uri))
+    branch: unstable
+- name: dind
+  type: registry-image
+  source:
+    repository: encodeering/concourse-dind
+    tag: 0.1.12
