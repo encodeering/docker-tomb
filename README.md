@@ -1,16 +1,9 @@
 ## Automatically created docker image for tomb
 
-[![Build Status](https://travis-ci.org/encodeering/docker-tomb.svg?branch=master)](https://travis-ci.org/encodeering/docker-tomb)
-
 ### Docker
 
 - https://hub.docker.com/r/encodeering/tomb-armhf/
-
-    ```docker pull encodeering/tomb-armhf:2.6-alpine```
-
 - https://hub.docker.com/r/encodeering/tomb-amd64/
-
-    ```docker pull encodeering/tomb-amd64:2.6-alpine```
 
 ### Utility
 
