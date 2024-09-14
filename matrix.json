@@ -1,0 +1,9 @@
+{
+    "concourse": {
+        "dind": "unstable"
+    },
+    "platforms": ["amd64", "armhf"],
+    "pipelines": [
+        { "project": "tomb", "base": "alpine", "version": "2.6", "variant": "" }
+    ]
+}
