@@ -9,12 +9,12 @@
 
 ```bash
 # armhf
-tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.6-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-armhf:2.11-alpine "$@"; }
 ```
 
 ```bash
 # amd64
-tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.6-alpine "$@"; }
+tomb () { docker run -it --privileged -v `pwd`:/mnt/tomb encodeering/tomb-amd64:2.11-alpine "$@"; }
 ```
 
 ### Notice
